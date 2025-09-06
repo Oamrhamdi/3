@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📚 ذاكر كعمر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Cairo', 'Amiri', sans-serif;
       background: linear-gradient(180deg, #0f1724, #1a1f2b);
       color: #fff;
       margin: 0;
       padding: 0;
       line-height: 1.8;
     }
-    header {
+    header, footer {
       background: #0b1220;
-      padding: 20px;
       text-align: center;
-      color: #f59e0b;
+      padding: 20px;
     }
-    h1, h2 {
-      margin: 10px 0;
+    header h1 {
+      color: #f59e0b;
+      font-size: 28px;
+    }
+    nav {
+      background: #1f2937;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #f59e0b;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #fff;
     }
     section {
+      display: none;
       margin: 40px auto;
       padding: 20px;
       background: #1f2937;
@@ -32,6 +47,14 @@
       width: 90%;
       max-width: 900px;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #f59e0b;
+      margin-bottom: 15px;
     }
     table {
       width: 100%;
@@ -51,29 +74,49 @@
       text-align: right;
       padding-right: 20px;
     }
+    .highlight {
+      color: #f59e0b;
+      font-weight: bold;
+    }
     footer {
-      background: #0b1220;
-      padding: 15px;
-      text-align: center;
       margin-top: 40px;
       font-size: 14px;
       color: #ccc;
     }
-    .highlight {
-      color: #f59e0b;
-      font-weight: bold;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <header>
     <h1>📚 ذاكر كعمر</h1>
-    <p>موقع شامل لجداول المذاكرة + نصائح + خطة عمر</p>
+    <p>مرحبًا بك طالب الثانوية العامة — طريقك نحو التفوق مثل <span class="highlight">𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</span></p>
   </header>
 
-  <!-- جدول علمي علوم -->
+  <nav>
+    <a onclick="showSection('home')">🏠 الرئيسية</a>
+    <a onclick="showSection('science')">🔬 علمي علوم</a>
+    <a onclick="showSection('math')">📐 علمي رياضة</a>
+    <a onclick="showSection('literary')">📘 أدبي</a>
+    <a onclick="showSection('tips')">💡 نصائح</a>
+    <a onclick="showSection('omar-day')">📅 يوم عمر</a>
+    <a onclick="showSection('teachers')">👨‍🏫 الأساتذة</a>
+    <a onclick="showSection('grades')">📊 مجموع عمر</a>
+  </nav>
 
-  <section>
+  <!-- الرئيسية -->
+  <section id="home" class="active">
+    <h2>🚀 ابدأ رحلتك</h2>
+    <p>
+      في هذا الموقع ستجد كل ما تحتاجه: جداول مذاكرة، خطة يومية، نصائح ذهبية،
+      وأسماء أفضل الأساتذة أونلاين. كل شيء مرتب لتكون طريقك نحو التفوق.
+    </p>
+  </section>
+
+  <!-- علمي علوم -->
+  <section id="science">
     <h2>🔬 جدول علمي علوم</h2>
     <table>
       <tr><th>اليوم</th><th>المواد</th></tr>
@@ -87,9 +130,8 @@
     </table>
   </section>
 
-  <!-- جدول علمي رياضة -->
-
-  <section>
+  <!-- علمي رياضة -->
+  <section id="math">
     <h2>📐 جدول علمي رياضة</h2>
     <table>
       <tr><th>اليوم</th><th>المواد</th></tr>
@@ -103,9 +145,8 @@
     </table>
   </section>
 
-  <!-- جدول أدبي -->
-
-  <section>
+  <!-- أدبي -->
+  <section id="literary">
     <h2>📘 جدول أدبي</h2>
     <table>
       <tr><th>اليوم</th><th>المواد</th></tr>
@@ -120,8 +161,7 @@
   </section>
 
   <!-- نصائح -->
-
-  <section>
+  <section id="tips">
     <h2>💡 نصائح لطلاب الثانوية العامة</h2>
     <ul>
       <li>خطط وقتك من بدري: اعمل جدول مذاكرة واقعي، وزع فيه المواد حسب مستواك فيها.</li>
@@ -139,8 +179,7 @@
   </section>
 
   <!-- جدول يوم عمر -->
-
-  <section>
+  <section id="omar-day">
     <h2>📅 جدول يوم عمر</h2>
     <p>
       الصحيان من <span class="highlight">5 الفجر</span>: وضوء وصلاة + تمرين + تحضير اليوم.<br>
@@ -159,8 +198,7 @@
   </section>
 
   <!-- الأساتذة -->
-
-  <section>
+  <section id="teachers">
     <h2>👨‍🏫 الأساتذة الأونلاين لعمر</h2>
     <ul>
       <li>عربي: محمد صلاح</li>
@@ -173,8 +211,7 @@
   </section>
 
   <!-- المجموع -->
-
-  <section>
+  <section id="grades">
     <h2>📊 مجموع عمر في الثانوية العامة</h2>
     <p>
       إنجليزي: <span class="highlight">57 / 60</span><br>
@@ -189,7 +226,15 @@
   </section>
 
   <footer>
-    هذا موقع مبدئي وسيتم تحديثه قريباً — الموقع تحت قيادة <span class="highlight">𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</span>
+    الموقع تحت إشراف <span class="highlight">𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</span>
   </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
-</html>
+      </html>
