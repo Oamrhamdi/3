@@ -1,283 +1,195 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ذاكر كعمر — جدول الدراسة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 ذاكر كعمر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#f59e0b; /* ذهبي */
-      --muted:#94a3b8;
-      --white:#f8fafc;
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(180deg, #0f1724, #1a1f2b);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Cairo', sans-serif;
-      background: linear-gradient(180deg, #071023 0%, #0b1220 60%);
-      color:var(--white);
-      padding:24px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    header {
+      background: #0b1220;
+      padding: 20px;
+      text-align: center;
+      color: #f59e0b;
     }
-
-    .container{
-      max-width:980px;
-      margin:0 auto;
+    h1, h2 {
+      margin: 10px 0;
     }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
+    section {
+      margin: 40px auto;
+      padding: 20px;
+      background: #1f2937;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 900px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
     }
-    .logo{
-      width:56px;
-      height:56px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),#ffcc66);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#071023;
-      font-weight:800;
-      font-size:20px;
-      box-shadow:0 6px 18px rgba(240,190,80,0.12);
+    table th, table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
     }
-    h1{
-      margin:0;
-      font-size:20px;
-      line-height:1;
+    table th {
+      background: #f59e0b;
+      color: #000;
     }
-    p.subtitle{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
+    ul {
+      text-align: right;
+      padding-right: 20px;
     }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:12px;
-      padding:14px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    footer {
+      background: #0b1220;
+      padding: 15px;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #ccc;
     }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:6px;
-    }
-    thead th{
-      text-align:right;
-      padding:12px;
-      font-weight:700;
-      font-size:14px;
-      color:var(--white);
-      border-bottom:1px dashed rgba(255,255,255,0.04);
-    }
-    tbody td{
-      vertical-align:top;
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,0.02);
-      font-size:14px;
-      color:var(--white);
-    }
-
-    .day{
-      width:150px;
-      font-weight:700;
-      color:var(--accent);
-    }
-
-    ul.tasks{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    ul.tasks li{
-      background:rgba(255,255,255,0.02);
-      padding:10px;
-      border-radius:8px;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      line-height:1.2;
-    }
-    .task-title{
-      font-weight:700;
-      color:#fff;
-      font-size:13px;
-    }
-    .task-desc{
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* تمييز اليوم الحالي */
-    tr.today{
-      outline: 3px solid rgba(245,158,11,0.09);
-      background: linear-gradient(90deg, rgba(245,158,11,0.02), transparent);
-    }
-
-    footer{
-      margin-top:16px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.4;
-    }
-
-    /* Responsive */
-    @media (max-width:720px){
-      .day{width:120px; font-size:13px}
-      ul.tasks li{padding:9px}
-      header{flex-direction:column; align-items:flex-start; gap:6px}
+    .highlight {
+      color: #f59e0b;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">ذ</div>
-        <div>
-          <h1>ذاكر كعمر</h1>
-          <p class="subtitle">جدول تالتة ثانوي — تنظيم أسبوعي للمذاكرة</p>
-        </div>
-      </div>
-      <div style="text-align:left;">
-        <p style="margin:0;color:var(--muted);font-size:13px;">مرحباً بك في جدول الدراسة — رتّب وقتك وركّز</p>
-      </div>
-    </header>
+  <header>
+    <h1>📚 ذاكر كعمر</h1>
+    <p>موقع شامل لجداول المذاكرة + نصائح + خطة عمر</p>
+  </header>
 
-    <section class="card">
-      <table aria-label="جدول مذاكرة اسبوعي">
-        <thead>
-          <tr>
-            <th class="day">اليوم</th>
-            <th>المهام</th>
-          </tr>
-        </thead>
-        <tbody id="schedule-body">
-          <tr data-day="sat">
-            <td class="day">السبت</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">حل مذكره المستر</div></div></li>
-                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">حل الملخص</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <!-- جدول علمي علوم -->
 
-          <tr data-day="sun">
-            <td class="day">الاحد</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">حل مذكره المستر</div></div></li>
-                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">حل الملخص</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <section>
+    <h2>🔬 جدول علمي علوم</h2>
+    <table>
+      <tr><th>اليوم</th><th>المواد</th></tr>
+      <tr><td>السبت</td><td>فيزياء (محاضرة + تفريغ)<br>إنجليزي (حل مذكرة)<br>جيولوجيا (حل الملخص)</td></tr>
+      <tr><td>الأحد</td><td>كيمياء (محاضرة + تفريغ)<br>عربي (حل مذكرة)<br>أحياء (حل الملخص)</td></tr>
+      <tr><td>الإثنين</td><td>فيزياء (حل مذكرة)<br>إنجليزي (حل الملخص + تأسيس)<br>جيولوجيا (محاضرة + تفريغ)</td></tr>
+      <tr><td>الثلاثاء</td><td>كيمياء (حل مذكرة)<br>عربي (حل الملخص)<br>أحياء (محاضرة + تفريغ)</td></tr>
+      <tr><td>الأربعاء</td><td>فيزياء (حل الملخص)<br>إنجليزي (محاضرة + تفريغ)<br>جيولوجيا (حل مذكرة)</td></tr>
+      <tr><td>الخميس</td><td>عربي (محاضرة + تفريغ)<br>كيمياء (حل الملخص)<br>أحياء (حل مذكرة)</td></tr>
+      <tr><td>الجمعة</td><td>إجازة أو مراجعة أصعب مادة / تأسيس اللغات</td></tr>
+    </table>
+  </section>
 
-          <tr data-day="mon">
-            <td class="day">الاثنين</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
-                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">حل الملخص وتأسيس نفسك</div></div></li>
-                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <!-- جدول علمي رياضة -->
 
-          <tr data-day="tue">
-            <td class="day">الثلاثاء</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
-                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">حل الملخص</div></div></li>
-                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <section>
+    <h2>📐 جدول علمي رياضة</h2>
+    <table>
+      <tr><th>اليوم</th><th>المواد</th></tr>
+      <tr><td>السبت</td><td>فيزياء (محاضرة + تفريغ)<br>إنجليزي (حل مذكرة)<br>رياضيات (حل الملخص)</td></tr>
+      <tr><td>الأحد</td><td>كيمياء (محاضرة + تفريغ)<br>عربي (حل مذكرة)<br>رياضيات (حل الملخص)</td></tr>
+      <tr><td>الإثنين</td><td>فيزياء (حل مذكرة)<br>إنجليزي (حل الملخص + تأسيس)<br>رياضيات (محاضرة + تفريغ)</td></tr>
+      <tr><td>الثلاثاء</td><td>كيمياء (حل مذكرة)<br>عربي (حل الملخص)<br>رياضيات (محاضرة + تفريغ)</td></tr>
+      <tr><td>الأربعاء</td><td>فيزياء (حل الملخص)<br>إنجليزي (محاضرة + تفريغ)<br>رياضيات (حل مذكرة)</td></tr>
+      <tr><td>الخميس</td><td>عربي (محاضرة + تفريغ)<br>كيمياء (حل الملخص)<br>رياضيات (حل مذكرة)</td></tr>
+      <tr><td>الجمعة</td><td>إجازة أو مراجعة أصعب مادة / تأسيس اللغات</td></tr>
+    </table>
+  </section>
 
-          <tr data-day="wed">
-            <td class="day">الاربعاء</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">حل الملخص</div></div></li>
-                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">حل مذكره المستر</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <!-- جدول أدبي -->
 
-          <tr data-day="thu">
-            <td class="day">الخميس</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
-                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">حل الملخص</div></div></li>
-                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
-              </ul>
-            </td>
-          </tr>
+  <section>
+    <h2>📘 جدول أدبي</h2>
+    <table>
+      <tr><th>اليوم</th><th>المواد</th></tr>
+      <tr><td>السبت</td><td>تاريخ (محاضرة + تفريغ)<br>إنجليزي (حل مذكرة)<br>عربي (حل الملخص)</td></tr>
+      <tr><td>الأحد</td><td>جغرافيا (محاضرة + تفريغ)<br>عربي (حل مذكرة)<br>إحصاء (حل الملخص)</td></tr>
+      <tr><td>الإثنين</td><td>تاريخ (حل مذكرة)<br>إنجليزي (حل الملخص + تأسيس)<br>عربي (محاضرة + تفريغ)</td></tr>
+      <tr><td>الثلاثاء</td><td>جغرافيا (حل مذكرة)<br>عربي (حل الملخص)<br>إحصاء (محاضرة + تفريغ)</td></tr>
+      <tr><td>الأربعاء</td><td>تاريخ (حل الملخص)<br>إنجليزي (محاضرة + تفريغ)<br>عربي (حل مذكرة)</td></tr>
+      <tr><td>الخميس</td><td>عربي (محاضرة + تفريغ)<br>جغرافيا (حل الملخص)<br>إحصاء (حل مذكرة)</td></tr>
+      <tr><td>الجمعة</td><td>إجازة أو مراجعة أصعب مادة / تأسيس اللغات</td></tr>
+    </table>
+  </section>
 
-          <tr data-day="fri">
-            <td class="day">الجمعة</td>
-            <td>
-              <ul class="tasks">
-                <li><div style="flex:1"><div class="task-title">اجازة</div><div class="task-desc">لا يوجد أي شيء — إنها إجازة لك. يمكنك حل أكثر على أصعب مادة تواجهك أو تأسيس نفسك في اللغات أكثر.</div></div></li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <!-- نصائح -->
 
-    <footer class="card" style="margin-top:12px;">
-      <div style="font-weight:700;color:var(--accent)">هذا موقع مبدئي وسيتم تحديثه قريباً وإضافة أقسام جديدة</div>
-      <div style="margin-top:6px;font-size:13px;color:var(--muted)">الموقع تحت قيادة 𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</div>
-    </footer>
-  </div>
+  <section>
+    <h2>💡 نصائح لطلاب الثانوية العامة</h2>
+    <ul>
+      <li>خطط وقتك من بدري: اعمل جدول مذاكرة واقعي، وزع فيه المواد حسب مستواك فيها.</li>
+      <li>ذاكر أول بأول: متراكمش الدروس، خلص اللي عليك يوم بيوم.</li>
+      <li>فهم قبل الحفظ: خصوصًا في المواد العلمية.</li>
+      <li>حل أسئلة كتير: التدريب على الامتحانات مهم جدًا.</li>
+      <li>خد راحة كفاية: النوم الكويس (7–8 ساعات) أهم من السهر.</li>
+      <li>قسم وقتك: 50 دقيقة مذاكرة + 10 دقايق راحة.</li>
+      <li>ابعد عن الملهيات: زي الموبايل والسوشيال ميديا.</li>
+      <li>راجع بانتظام: كل أسبوع راجع اللي ذاكرته.</li>
+      <li>اهتم بصحتك: كل صحي، اشرب مية كتير، وتحرك شوية.</li>
+      <li>خليك واثق ومتفائل: الثقة بالله ثم بنفسك طريق النجاح.</li>
+      <li>قرب من ربنا في الفترة دي.</li>
+    </ul>
+  </section>
 
-  <script>
-    // تمييز اليوم الحالي تلقائيًا حسب اليوم المحلي
-    (function(){
-      const map = {
-        0: 'sun',
-        1: 'mon',
-        2: 'tue',
-        3: 'wed',
-        4: 'thu',
-        5: 'fri',
-        6: 'sat'
-      };
-      const todayIndex = new Date().getDay(); // 0=Sun ... 6=Sat
-      const todayKey = map[todayIndex];
-      const rows = document.querySelectorAll('#schedule-body tr');
-      rows.forEach(r=>{
-        if(r.getAttribute('data-day') === todayKey){
-          r.classList.add('today');
-        }
-      });
-    })();
-  </script>
+  <!-- جدول يوم عمر -->
+
+  <section>
+    <h2>📅 جدول يوم عمر</h2>
+    <p>
+      الصحيان من <span class="highlight">5 الفجر</span>: وضوء وصلاة + تمرين + تحضير اليوم.<br>
+      ⏰ 6:30 → بداية المحاضرة (50 دقيقة) + رياضة (10 دقائق) حتى الساعة 9.<br>
+      🍴 9:00 → فطار + راحة حتى 9:45.<br>
+      📝 10:00 → استكمال المحاضرة + كتابة الشرح حتى 11:30.<br>
+      📖 قراءة قرآن وانتظار صلاة الظهر.<br>
+      🍽️ بعد الظهر → غداء + وقت مع العائلة / تعلم مهارة حتى 2.<br>
+      📚 من 2 حتى 4 → حل الملخص (ساعة ونص–ساعتين).<br>
+      🏃‍♂️ بعد العصر → رياضة + حل المذكرة حتى المغرب.<br>
+      🕌 المغرب → صلاة + قرآن أو قصص دينية.<br>
+      🌙 بعد العشاء → جلسة بسيطة ثم نوم مبكر.<br>
+      <br>
+      أغلب الأيام كان بيخلص قبل المغرب أو العصر.
+    </p>
+  </section>
+
+  <!-- الأساتذة -->
+
+  <section>
+    <h2>👨‍🏫 الأساتذة الأونلاين لعمر</h2>
+    <ul>
+      <li>عربي: محمد صلاح</li>
+      <li>إنجليزي: حسن النجار + مس مي</li>
+      <li>فيزياء: حسام خليل + أحمد الساهي</li>
+      <li>كيمياء: محمد عبد الجواد</li>
+      <li>أحياء: أحمد الجوهري + مس إيمان</li>
+      <li>جيولوجيا: ماجد إمام</li>
+    </ul>
+  </section>
+
+  <!-- المجموع -->
+
+  <section>
+    <h2>📊 مجموع عمر في الثانوية العامة</h2>
+    <p>
+      إنجليزي: <span class="highlight">57 / 60</span><br>
+      عربي: <span class="highlight">74.4 / 80</span><br>
+      كيمياء: <span class="highlight">54 / 60</span><br>
+      أحياء: <span class="highlight">56 / 60</span><br>
+      فيزياء: <span class="highlight">60 / 60</span><br>
+      <br>
+      <b>الإجمالي:</b> <span class="highlight">301.4 / 320</span><br>
+      <b>النسبة:</b> <span class="highlight">94.2%</span>
+    </p>
+  </section>
+
+  <footer>
+    هذا موقع مبدئي وسيتم تحديثه قريباً — الموقع تحت قيادة <span class="highlight">𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</span>
+  </footer>
 </body>
 </html>
