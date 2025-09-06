@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ذاكر كعمر — جدول الدراسة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#f59e0b; /* ذهبي */
+      --muted:#94a3b8;
+      --white:#f8fafc;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Cairo', sans-serif;
+      background: linear-gradient(180deg, #071023 0%, #0b1220 60%);
+      color:var(--white);
+      padding:24px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#ffcc66);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#071023;
+      font-weight:800;
+      font-size:20px;
+      box-shadow:0 6px 18px rgba(240,190,80,0.12);
+    }
+    h1{
+      margin:0;
+      font-size:20px;
+      line-height:1;
+    }
+    p.subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:12px;
+      padding:14px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:6px;
+    }
+    thead th{
+      text-align:right;
+      padding:12px;
+      font-weight:700;
+      font-size:14px;
+      color:var(--white);
+      border-bottom:1px dashed rgba(255,255,255,0.04);
+    }
+    tbody td{
+      vertical-align:top;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,0.02);
+      font-size:14px;
+      color:var(--white);
+    }
+
+    .day{
+      width:150px;
+      font-weight:700;
+      color:var(--accent);
+    }
+
+    ul.tasks{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    ul.tasks li{
+      background:rgba(255,255,255,0.02);
+      padding:10px;
+      border-radius:8px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height:1.2;
+    }
+    .task-title{
+      font-weight:700;
+      color:#fff;
+      font-size:13px;
+    }
+    .task-desc{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* تمييز اليوم الحالي */
+    tr.today{
+      outline: 3px solid rgba(245,158,11,0.09);
+      background: linear-gradient(90deg, rgba(245,158,11,0.02), transparent);
+    }
+
+    footer{
+      margin-top:16px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    /* Responsive */
+    @media (max-width:720px){
+      .day{width:120px; font-size:13px}
+      ul.tasks li{padding:9px}
+      header{flex-direction:column; align-items:flex-start; gap:6px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">ذ</div>
+        <div>
+          <h1>ذاكر كعمر</h1>
+          <p class="subtitle">جدول تالتة ثانوي — تنظيم أسبوعي للمذاكرة</p>
+        </div>
+      </div>
+      <div style="text-align:left;">
+        <p style="margin:0;color:var(--muted);font-size:13px;">مرحباً بك في جدول الدراسة — رتّب وقتك وركّز</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <table aria-label="جدول مذاكرة اسبوعي">
+        <thead>
+          <tr>
+            <th class="day">اليوم</th>
+            <th>المهام</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <tr data-day="sat">
+            <td class="day">السبت</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">حل مذكره المستر</div></div></li>
+                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">حل الملخص</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="sun">
+            <td class="day">الاحد</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">حل مذكره المستر</div></div></li>
+                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">حل الملخص</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="mon">
+            <td class="day">الاثنين</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
+                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">حل الملخص وتأسيس نفسك</div></div></li>
+                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="tue">
+            <td class="day">الثلاثاء</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
+                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">حل الملخص</div></div></li>
+                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="wed">
+            <td class="day">الاربعاء</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">فيزياء</div><div class="task-desc">حل الملخص</div></div></li>
+                <li><div style="flex:1"><div class="task-title">انجليزي</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+                <li><div style="flex:1"><div class="task-title">جيولوجيا</div><div class="task-desc">حل مذكره المستر</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="thu">
+            <td class="day">الخميس</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">عربي</div><div class="task-desc">محاضرة الشرح وتفريغها</div></div></li>
+                <li><div style="flex:1"><div class="task-title">كيمياء</div><div class="task-desc">حل الملخص</div></div></li>
+                <li><div style="flex:1"><div class="task-title">احياء</div><div class="task-desc">حل مذكره المستر</div></div></li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr data-day="fri">
+            <td class="day">الجمعة</td>
+            <td>
+              <ul class="tasks">
+                <li><div style="flex:1"><div class="task-title">اجازة</div><div class="task-desc">لا يوجد أي شيء — إنها إجازة لك. يمكنك حل أكثر على أصعب مادة تواجهك أو تأسيس نفسك في اللغات أكثر.</div></div></li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="card" style="margin-top:12px;">
+      <div style="font-weight:700;color:var(--accent)">هذا موقع مبدئي وسيتم تحديثه قريباً وإضافة أقسام جديدة</div>
+      <div style="margin-top:6px;font-size:13px;color:var(--muted)">الموقع تحت قيادة 𝔼ℕ𝔾 𝕆𝕄𝔸ℝ</div>
+    </footer>
+  </div>
+
+  <script>
+    // تمييز اليوم الحالي تلقائيًا حسب اليوم المحلي
+    (function(){
+      const map = {
+        0: 'sun',
+        1: 'mon',
+        2: 'tue',
+        3: 'wed',
+        4: 'thu',
+        5: 'fri',
+        6: 'sat'
+      };
+      const todayIndex = new Date().getDay(); // 0=Sun ... 6=Sat
+      const todayKey = map[todayIndex];
+      const rows = document.querySelectorAll('#schedule-body tr');
+      rows.forEach(r=>{
+        if(r.getAttribute('data-day') === todayKey){
+          r.classList.add('today');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
